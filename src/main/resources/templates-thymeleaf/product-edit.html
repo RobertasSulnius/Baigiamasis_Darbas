@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product</title>
+</head>
+<body>
+<h1>Redaguoti Produktą</h1>
+<hr>
+
+<form th:action="@{/product/update/{id}(id=${product.id})}" method="post">
+
+    <label for="title">Produkto Pavadinimas:</label>
+    <input type="text" id="title" name="title" th:value="${product.title}" /><br>
+
+    <label for="description">Produkto Aprašymas:</label>
+    <input type="text" id="description" name="description" th:value="${product.description}" /><br>
+
+    <label for="price">Produkto Kaina:</label>
+    <input type="text" id="price" name="price" th:value="${product.price}" /><br>
+
+    <label for="city">Produkto Miestas:</label>
+    <input type="text" id="city" name="city" th:value="${product.city}" /><br>
+
+    <label for="author">Produkto Autorius:</label>
+    <input type="text" id="author" name="author" th:value="${product.author}" /><br>
+
+    <input type="submit" value="Atnaujinti Produkta">
+
+</form>
+
+</body>
+</html>

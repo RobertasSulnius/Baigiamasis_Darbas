@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <a href="/">HOME</a>
     <title> Buy Sell Web</title>
 </head>
 <body>
@@ -18,11 +19,18 @@
 <b> Produkto Autorius: </b> <span th:text="${product.author}"></span><br>
 <hr>
 
+
+
 <form th:action="@{/product/delete/{id}(id=${product.id})}" method="post">
-
     <input type="submit" value="Ištrinti Produkta">
-
 </form>
+
+<form th:action="@{/product/edit/{id}(id=${product.id})}" method="get">
+    <input type="submit" value="Redaguoti Produkta">
+</form>
+
+
+
 </body>
 </html>
 

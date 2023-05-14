@@ -15,7 +15,7 @@
 </form>
 <div th:if="${products}">
     <div th:each="product : ${products}">
-        <p><b th:text="${product.title}"></b> <span th:text="${product.price}"></span> <a th:href="@{/product/{id}(id=${product.id})}">Skelbimo Informacija</a></p>
+        <p><b th:text="${product.title}"></b> <span th:text="${product.price}"></span> <a th:href="@{/product/{id}(id=${product.id})}">INFO</a></p>
     </div>
 </div>
 <div th:unless="${products}">
