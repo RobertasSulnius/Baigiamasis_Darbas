@@ -1,44 +1,133 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta charset="UTF-8">
-  <title> Buy Sell Web</title>
+  <meta charset="UTF-8">
+  <title>Buy Sell Web</title>
+  <style>
+
+.title {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+<!--  transform: translateX(-30%);-->
+}
+
+label {
+  width: 200px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+input {
+  width: 300px;
+  text-align: center;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-label {
+  margin-right: 10px;
+}
+
+.search-input {
+  margin-right: 10px;
+  width: 300px;
+}
+
+.search-button {
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+}
+ .form1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  width: 300px;
+  margin: 10px;
+}
+
+
+
+ </style>
 </head>
 <body>
-
-<h1> Pirkimu/pardavimu skelbimu puslapis</h1><hr>
-<h4> Produktai is Lietuvos miestų</h4>
-<form action="/" method="get">
-    Paieska pagal pavadinima: <input type="text" name="title" th:value="${title}"><br> <br>
-    <input type="submit" value="Paieška"/>
-</form>
-<div th:if="${products}">
-    <div th:each="product : ${products}">
-        <p><b th:text="${product.title}"></b> <span th:text="${product.price}"></span> <a th:href="@{/product/{id}(id=${product.id})}">INFO</a></p>
-    </div>
-</div>
-<div th:unless="${products}">
-    <h3>Produkto nera</h3>
-</div>
-
-
+<h1 class="title">Pirkimo/pardavimo skelbimų puslapis</h1>
 <hr>
-<h3> Naujo produkto kurimas </h3>
+<h4 class="title">Produktai iš Lietuvos miestų</h4>
+<form class="form1" action="/" method="get">
+  <div class="search-container">
+    <label for="paieska" class="search-label">Skelbimo pavadinimas:</label>
+    <input type="text" id="paieska" name="title" class="search-input" th:value="${title}" />
+    <button type="submit" class="search-button">Paieška</button>
+  </div>
+</form>
 
+<div th:if="${products}" class="product-container">
+  <div th:each="product : ${products}" class="product">
+    <p><b th:text="${product.title}"></b> <span th:text="${product.price}"></span> <a th:href="@{/product/{id}(id=${product.id})}">INFO</a></p>
+  </div>
+</div>
+
+<div th:unless="${products}">
+  <h3>Produkto nėra</h3>
+</div>
+<hr>
 <form th:action="@{/product/create}" method="post" enctype="multipart/form-data">
+  <div class="row">
+    <label for="title">Skelbimo pavadinimas:</label>
+    <input type="text" id="title" name="title" />
+  </div>
+  <div class="row">
+    <label for="description">Skelbimo aprašymas:</label>
+    <input type="text" id="description" name="description" />
+  </div>
+  <div class="row">
+    <label for="price">Kaina:</label>
+    <input type="text" id="price" name="price" />
+  </div>
+  <div class="row">
+    <label for="city">Miestas:</label>
+    <input type="text" id="city" name="city" />
+  </div>
+  <div class="row">
+    <label for="author">Autorius:</label>
+    <input type="text" id="author" name="author" />
+  </div>
 
-    Skelbimo pavadinimas: <input type="text" name="title"/><br><br>
-    Skelbimo Aprasymas: <input type="text" name="description"/><br><br>
-    Kaina: <input type="text" name="price"/><br><br>
-    Miestas: <input type="text" name="city"/><br><br>
-    Autorius: <input type="text" name="author"/><br><br>
+  <div class="row">
+    <label for="file1">Pirma foto:</label>
+    <input type="file" id="file1" name="file1" /><br><br>
+  </div>
+  <div class="row">
+    <label for="file2">Antra foto:</label>
+    <input type="file" id="file2" name="file2" /><br><br>
+  </div>
+  <div class="row">
+    <label for="file3">Trečia foto:</label>
+    <input type="file" id="file3" name="file3" /><br><br>
+  </div>
 
-    Pirma foto: <input type="file" name="file1"/><br><br>
-    Antra foto: <input type="file" name="file2"/><br><br>
-    Trecia foto: <input type="file" name="file3"/><br><br>
+  <div class="row">
+    <input type="submit" value="Pridėti prekę">
+  </div>
 
-    <input type="submit" value="Prideti preke">
+
+</form>
 
 </form>
 </body>

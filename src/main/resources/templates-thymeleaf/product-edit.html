@@ -1,33 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+<!--<link rel="stylesheet" type="text/css" th:href="@{/static/style.css}">-->
+
 <head>
     <meta charset="UTF-8">
     <title>Edit Product</title>
+    <style>
+        .title {
+  text-align: center;
+}
+
+.mygtukas-1 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  width: 150px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+input {
+  width: 400px;
+  text-align: center;
+  font-size: 16px;
+  height: 30px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+    </style>
 </head>
 <body>
-<h1>Redaguoti Produktą</h1>
-<hr>
+<h1 class="title">Produkto redagavimas</h1><hr>
 
-<form th:action="@{/product/update/{id}(id=${product.id})}" method="post">
+    <form th:action="@{/product/update/{id}(id=${product.id})}" method="post">
 
-    <label for="title">Produkto Pavadinimas:</label>
-    <input type="text" id="title" name="title" th:value="${product.title}" /><br>
+        <div class="container">
+            <div class="row">
+                <label for="title">Produkto Pavadinimas:</label>
+                <input type="text" id="title" name="title" th:value="${product.title}" />
+            </div>
 
-    <label for="description">Produkto Aprašymas:</label>
-    <input type="text" id="description" name="description" th:value="${product.description}" /><br>
+            <div class="row">
+                <label for="description">Produkto Aprašymas:</label>
+                <input type="text" id="description" name="description" th:value="${product.description}" /><br>
+            </div>
 
-    <label for="price">Produkto Kaina:</label>
-    <input type="text" id="price" name="price" th:value="${product.price}" /><br>
+            <div class="row">
+                <label for="price">Produkto Kaina:</label>
+                <input type="number" id="price" name="price" th:value="${product.price}" /><br>
+            </div>
+            <div class="row">
+                <label for="city">Produkto Miestas:</label>
+                <input type="text" id="city" name="city" th:value="${product.city}" /> <br>
+            </div>
+            <div class="row">
+                <label for="author">Produkto Autorius:</label>
+                <input type="text" id="author" name="author" th:value="${product.author}" /><br>
+            </div>
 
-    <label for="city">Produkto Miestas:</label>
-    <input type="text" id="city" name="city" th:value="${product.city}" /><br>
-
-    <label for="author">Produkto Autorius:</label>
-    <input type="text" id="author" name="author" th:value="${product.author}" /><br>
-
-    <input type="submit" value="Atnaujinti Produkta">
-
-</form>
-
+        <input class="mygtukas-1" type="submit" value="Atnaujinti Produkta">
+        </div>
+    </form>
 </body>
 </html>

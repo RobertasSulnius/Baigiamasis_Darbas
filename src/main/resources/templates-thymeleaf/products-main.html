@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+  <title> Buy Sell Web</title>
+</head>
+<body>
+
+<h1> Pirkimu/pardavimu skelbimu puslapis</h1><hr>
+<h4> Produktai is Lietuvos miestų</h4>
+<form action="/" method="get">
+    Paieska pagal pavadinima: <input type="text" name="title" th:value="${title}"><br> <br>
+    <input type="submit" value="Paieška"/>
+</form>
+<div th:if="${products}">
+    <div th:each="product : ${products}">
+        <p><b th:text="${product.title}"></b> <span th:text="${product.price}"></span> <a th:href="@{/product/{id}(id=${product.id})}">INFO</a></p>
+    </div>
+</div>
+<div th:unless="${products}">
+    <h3>Produkto nera</h3>
+</div>
+
+
+<hr>
+<h3> Naujo produkto kurimas </h3>
+
+<form th:action="@{/product/create}" method="post" enctype="multipart/form-data">
+
+    Skelbimo pavadinimas: <input type="text" name="title"/><br><br>
+    Skelbimo Aprasymas: <input type="text" name="description"/><br><br>
+    Kaina: <input type="text" name="price"/><br><br>
+    Miestas: <input type="text" name="city"/><br><br>
+    Autorius: <input type="text" name="author"/><br><br>
+
+    Pirma foto: <input type="file" name="file1"/><br><br>
+    Antra foto: <input type="file" name="file2"/><br><br>
+    Trecia foto: <input type="file" name="file3"/><br><br>
+
+    <input type="submit" value="Prideti preke">
+
+</form>
+</body>
+</html>
+
