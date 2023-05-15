@@ -62,5 +62,11 @@ public class ProductController {
         Product updatedProduct = productService.updateProduct(id, product);
         return "redirect:/product/" + updatedProduct.getId();
     }
+    @GetMapping("/product-add")
+    public String addProduct(Model model) {
+        model.addAttribute("product", new Product());
+        return "product-add";
+    }
+
 
 }
