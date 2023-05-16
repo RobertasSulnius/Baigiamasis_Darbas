@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <!--  <a href="/product-add">Pridėti naują produktą</a>-->
+  <title>Buy Sell Web</title>
+  <style>
+
+.title {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  width: 200px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+input {
+  width: 300px;
+  text-align: center;
+  height:25px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-label {
+  margin-right: 10px;
+}
+
+.search-input {
+  margin-right: 10px;
+  width: 300px;
+}
+
+.search-button {
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  height:30px;
+  width: 120px;
+}
+ .form1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  width: 300px;
+  margin: 10px;
+}
+.add {
+text-decoration: none;
+font-size: 18px;
+font-weight: bold;
+}
+
+
+ </style>
+</head>
+<body>
+
+<h1>Pirkimo/pardavimo skelbimų puslapis</h1>
+<hr>
+<a href="/product-add">Pridėti naują produktą</a>`
+<h4>Skelbimo paieška</h4>
+<form action="/" method="get">
+  <div>
+    <label for="paieska">Įveskite pavadinimą:</label>
+    <input type="text" id="paieska" name="title" th:value="${title}" />
+    <button type="submit">Paieška</button>
+  </div>
+</form>
+<br> <br>
+<div th:if="${products}">
+  <div th:each="product : ${products}">
+    <div>
+      <img th:if="${product.images.size() > 0}" th:src="@{/images/{id}(id=${product.images[0].id})}" height="60px" />
+      <a th:href="@{/product/{id}(id=${product.id})}">
+        <b th:text="${product.title}"></b>
+      </a>
+    </div>
+    <p><span th:text="${product.price}"></span> eur.</p>
+  </div>
+</div>
+
+<div th:unless="${products}">
+  <h3>Produkto nėra</h3>
+</div>
+<hr>
+
+</body>
+</html>

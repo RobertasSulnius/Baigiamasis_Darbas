@@ -2,35 +2,112 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <a href="/">HOME</a>
     <title> Buy Sell Web</title>
+    <style>
+  h1 {
+    text-align: center;
+  }
+  .image-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+ a {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.product-details {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  width: 200px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.value {
+  text-align: left;
+}
+.button-container {
+    text-align: center;
+
+  }
+
+  .button-container form {
+    display: inline-block;
+    margin-right: 30px;
+  }
+
+  .button {
+    height: 30px;
+    width: 160px;
+    text-align: center;
+    font-weight: bold;
+  }
+    </style>
 </head>
 <body>
 
-<h1> BUY SELL STUFF  </h1><hr>
-<h4> Produkto informacija</h4>
-
-<img th:each="img : ${images}" th:src="@{/images/{id}(id=${img.id})}" height="60px" /> <br><br>
-
-<b> Produkto Pavadinimas: </b> <span th:text="${product.title}"></span><br>
-<b> Produkto Aprašymas: </b> <span th:text="${product.description}"></span><br>
-<b> Produkto Kaina: </b> <span th:text="${product.price}"></span><br>
-<b> Produkto Miestas: </b> <span th:text="${product.city}"></span><br>
-<b> Produkto Autorius: </b> <span th:text="${product.author}"></span><br>
+<h1> Produkto informacija </h1>
+<a href="/">HOME</a>
 <hr>
 
+<div class="image-container">
+    <img th:each="img : ${images}" th:src="@{/images/{id}(id=${img.id})}" height="200px"/>
+</div>
+<br><br>
 
+<div class="container">
+    <div class="product-details">
+        <div class="row">
+            <div class="label">Produkto Pavadinimas:</div>
+            <div class="value" th:text="${product.title}"></div>
+        </div>
+        <div class="row">
+            <div class="label">Produkto Aprašymas:</div>
+            <div class="value" th:text="${product.description}"></div>
+        </div>
+        <div class="row">
+            <div class="label">Produkto Kaina:</div>
+            <div class="value" th:text="${product.price}"></div>
+        </div>
+        <div class="row">
+            <div class="label">Autoriaus tel. nr.:</div>
+            <div class="value" th:text="${product.phoneNumber}"></div>
+        </div>
+        <div class="row">
+            <div class="label">Produkto Autorius:</div>
+            <div class="value" th:text="${product.author}"></div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="button-container">
+    <form th:action="@{/product/edit/{id}(id=${product.id})}" method="get">
+        <input type="submit" value="Redaguoti Produktą" class="button">
+    </form>
 
-<form th:action="@{/product/delete/{id}(id=${product.id})}" method="post">
-    <input type="submit" value="Ištrinti Produkta">
-</form>
+    <form th:action="@{/product/delete/{id}(id=${product.id})}" method="post">
+        <input type="submit" value="Ištrinti Produktą" class="button">
+    </form>
 
-<form th:action="@{/product/edit/{id}(id=${product.id})}" method="get">
-    <input type="submit" value="Redaguoti Produkta">
-</form>
-
-
-
+</div>
 </body>
 </html>
 

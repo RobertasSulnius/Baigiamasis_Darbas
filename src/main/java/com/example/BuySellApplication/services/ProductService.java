@@ -76,7 +76,7 @@ public class ProductService {
         product.setTitle(updatedProduct.getTitle());
         product.setDescription(updatedProduct.getDescription());
         product.setPrice(updatedProduct.getPrice());
-        product.setCity(updatedProduct.getCity());
+        product.setPhoneNumber(updatedProduct.getPhoneNumber());
         product.setAuthor(updatedProduct.getAuthor());
 
         return productRepository.save(product);

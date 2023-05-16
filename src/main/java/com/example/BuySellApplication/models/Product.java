@@ -25,8 +25,8 @@ public class Product {
     private String description;
     @Column(name = "price")
     private int price;
-    @Column(name = "city")
-    private String city;
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
     @Column(name = "author")
     private String author;
 

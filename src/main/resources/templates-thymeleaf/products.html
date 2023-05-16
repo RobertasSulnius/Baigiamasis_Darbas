@@ -2,81 +2,90 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <a href="/product-add">Pridėti naują produktą</a>
   <title>Buy Sell Web</title>
   <style>
+    .title {
+      text-align: center;
+    }
 
-.title {
+    label {
+      width: 200px;
+      text-align: right;
+      margin-right: 20px;
+    }
+
+    input {
+      width: 300px;
+      text-align: center;
+      height: 25px;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-label {
+      margin-right: 10px;
+    }
+
+    .search-input {
+      margin-right: 10px;
+      width: 300px;
+    }
+
+    .search-button {
+      padding: 5px;
+      text-align: center;
+      display: inline-block;
+      height: 30px;
+      width: 160px;
+    }
+
+    .form1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .product {
+      width: 250px;
+      margin: 10px;
+    }
+
+    .product-image {
+      display: flex;
+      justify-content: center;
+
+    }
+
+.product-title {
   text-align: center;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-<!--  transform: translateX(-30%);-->
-}
-
-label {
-  width: 200px;
-  text-align: right;
-  margin-right: 20px;
-}
-
-input {
-  width: 300px;
-  text-align: center;
-  height:25px;
-}
-.search-container {
-  display: flex;
-  align-items: center;
-}
-
-.search-label {
-  margin-right: 10px;
-}
-
-.search-input {
-  margin-right: 10px;
-  width: 300px;
-}
-
-.search-button {
-  padding: 5px;
-  text-align: center;
-  display: inline-block;
-  height:30px;
-  width: 120px;
-}
- .form1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.product-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.product {
-  width: 300px;
-  margin: 10px;
-}
-
-
-
- </style>
+   .add {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  </style>
 </head>
 <body>
 
 <h1 class="title">Pirkimo/pardavimo skelbimų puslapis</h1>
+<a href="/product-add" class="add">Pridėti naują produktą</a>
 <hr>
+
 <h4 class="title">Skelbimo paieška</h4>
 <form class="form1" action="/" method="get">
   <div class="search-container">
-    <label for="paieska" class="search-label">Skelbimo pavadinimas:</label>
+    <label for="paieska" class="search-label">Įveskite pavadinimą:</label>
     <input type="text" id="paieska" name="title" class="search-input" th:value="${title}" />
     <button type="submit" class="search-button">Paieška</button>
   </div>
@@ -84,7 +93,15 @@ input {
 <br> <br>
 <div th:if="${products}" class="product-container">
   <div th:each="product : ${products}" class="product">
-    <p><a th:href="@{/product/{id}(id=${product.id})}"><b th:text="${product.title}"></b></a> <span th:text="${product.price}"></span> eur.</p>
+    <div class="product-image">
+      <img th:if="${product.images.size() > 0}" th:src="@{/images/{id}(id=${product.images[0].id})}" height="120px" />
+    </div>
+    <div class="product-title">
+      <a th:href="@{/product/{id}(id=${product.id})}" >
+        <b th:text="${product.title}"></b>
+        <span th:text="${product.price}"></span> eur.
+      </a>
+    </div>
   </div>
 </div>
 
@@ -92,7 +109,5 @@ input {
   <h3>Produkto nėra</h3>
 </div>
 <hr>
-
 </body>
 </html>
-
