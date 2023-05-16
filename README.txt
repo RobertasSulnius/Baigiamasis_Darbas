@@ -14,4 +14,4 @@ Galima redaguoti produktą paspaudus mygtuką "Redaguoti Produktą". Tai nukreip
 
 Taip pat galima ištrinti produktą paspaudus mygtuką "Ištrinti Produktą". Tai ištrins pasirinktą produktą iš duomenų bazės.
 
-Duomenų saugojimui ir valdymui naudojama MySQL duomenų bazė. 
+Duomenų saugojimui ir valdymui naudojama MySQL duomenų bazė.
